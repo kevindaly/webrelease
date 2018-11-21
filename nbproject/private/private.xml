@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/WebRelease/uml/uml.puml</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/Session/ReleasePropertiesFacade.java</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/entity/Attachments.java</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/Session/TextAreaFacade.java</file>
+            <file>file:/C:/WebRelease/web/dbaTaskDetails/Create_dbatask.xhtml</file>
+            <file>file:/C:/WebRelease/web/ReleaseQuestionsTemplate.xhtml</file>
+            <file>file:/C:/WebRelease/web/index.xhtml</file>
+            <file>file:/C:/WebRelease/src/java/WebRelease.properties</file>
+            <file>file:/C:/WebRelease/web/META-INF/MANIFEST.MF</file>
+            <file>file:/C:/WebRelease/src/java/web/dbaTaskDetails/Create.xhtml</file>
+            <file>file:/C:/WebRelease/web/gfv3ee6.dpf</file>
+            <file>file:/C:/WebRelease/src/java/web/releaseManager/Edit.xhtml</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/Session/DbaTaskDetailsFacade.java</file>
+            <file>file:/C:/WebRelease/src/java/web/dbaTaskDetails/Edit.xhtml</file>
+            <file>file:/C:/WebRelease/src/java/web/dbaTaskDetails/View.xhtml</file>
+            <file>file:/C:/WebRelease/src/java/web/dbaTaskDetails/List.xhtml</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/Session/AbstractFacade.java</file>
+            <file>file:/C:/WebRelease/src/java/web/releaseManager/List.xhtml</file>
+            <file>file:/C:/WebRelease/web/welcomePrimefaces.xhtml</file>
+            <file>file:/C:/WebRelease/web/RAS3.png</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/Session/ReleaseTypeQuestionsFacade.java</file>
+            <file>file:/C:/WebRelease/web/WEB-INF/faces-config.xml</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/Session/ReleaseOptionsFacade.java</file>
+            <file>file:/C:/WebRelease/src/java/web/releaseManager/Create.xhtml</file>
+            <file>file:/C:/WebRelease/web/chart.xhtml</file>
+            <file>file:/C:/WebRelease/web/WEB-INF/web.xml</file>
+            <file>file:/C:/WebRelease/src/java/web/impactedCountries/List.xhtml</file>
+            <file>file:/C:/WebRelease/src/java/web/dbaTaskDetails/Create_dbatask.xhtml</file>
+            <file>file:/C:/WebRelease/web/releaseManagerMenu.xhtml</file>
+            <file>file:/C:/WebRelease/web/dbaTaskDetails/Create.xhtml</file>
+            <file>file:/C:/WebRelease/src/conf/persistence.xml</file>
+            <file>file:/C:/WebRelease/src/java/com/webrelease/beans/Session/ReleaseManagerFacade.java</file>
+        </group>
+    </open-files>
+</project-private>
