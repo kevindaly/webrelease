@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+
+        <h:form id="ReleaseManagerCreateForm">
+
+            <p:panel header="Application / Release" style="margin-bottom:2px;">  
+
+                <h:panelGroup id="display">   
+                    <h:panelGrid columns="1" cellpadding="10" style="width: 99%">
+                        <p:commandButton  actionListener="#{releaseManagerController.prepareCreate}" value="#{webRelease.Create} New Release" action="#{releaseManagerController.nextPage}" icon="ui-icon-disk"/>
+                        <p:button value="Find Existing Release" outcome="/releaseManager/List_1.xhtml"  icon="ui-icon-search" /> 
+                    </h:panelGrid>           
+                    <h:panelGrid columns="1" cellpadding="10" style="width: 99%">
+                    </h:panelGrid>    
+                </h:panelGroup>
+
+            </p:panel>  
+
+        </h:form>
+    </ui:composition>
+
+</html>
