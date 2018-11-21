@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ReleaseTypeQuestionsListForm">
+                <p:panel header="#{webRelease.ListReleaseTypeQuestionsTitle}">
+                    <p:dataTable id="datalist" value="#{releaseTypeQuestionsController.items}" var="item"
+                                 selectionMode="single" selection="#{releaseTypeQuestionsController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idQuestion}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_idQuestion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idQuestion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionOrder}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionOrder}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionDescription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionDescription}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_booleanYesNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.booleanYesNo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_mandatoryYesNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mandatoryYesNo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_textTemplate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.textTemplate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionProperty}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionProperty}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionType}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{webRelease.Create}" actionListener="#{releaseTypeQuestionsController.prepareCreate}" update=":ReleaseTypeQuestionsCreateForm" oncomplete="PF('ReleaseTypeQuestionsCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{webRelease.View}" update=":ReleaseTypeQuestionsViewForm" oncomplete="PF('ReleaseTypeQuestionsViewDialog').show()" disabled="#{empty releaseTypeQuestionsController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{webRelease.Edit}" update=":ReleaseTypeQuestionsEditForm" oncomplete="PF('ReleaseTypeQuestionsEditDialog').show()" disabled="#{empty releaseTypeQuestionsController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{webRelease.Delete}" actionListener="#{releaseTypeQuestionsController.destroy}" update=":growl,datalist" disabled="#{empty releaseTypeQuestionsController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

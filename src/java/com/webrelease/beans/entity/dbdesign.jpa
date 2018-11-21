@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings status="GENERATED" id="_139661231657434" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpa:entity class="UnixSa" minimized="false" id="_139661231657437">
+        <jpa:table name="UNIX_SA"/>
+        <jpa:attributes>
+            <jpa:id name="idTask" attribute-type="java.lang.String" id="_139661231659048">
+                <jpa:column name="id_task" unique="false" nullable="false" insertable="true" updatable="true" table="UNIX_SA" length="48"/>
+            </jpa:id>
+            <jpa:basic name="taskDetails" optional="false" attribute-type="java.lang.String" id="_139661231659049">
+                <jpa:column name="task_details" unique="false" nullable="false" insertable="true" updatable="true" table="UNIX_SA" length="255"/>
+            </jpa:basic>
+            <jpa:basic name="taskStartTime" optional="true" attribute-type="java.util.Date" id="_139661231659050">
+                <jpa:column name="task_start_time" unique="false" nullable="true" insertable="true" updatable="true" table="UNIX_SA"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="taskEndTime" optional="true" attribute-type="java.util.Date" id="_139661231659051">
+                <jpa:column name="task_end_time" unique="false" nullable="true" insertable="true" updatable="true" table="UNIX_SA"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:many-to-one name="releaseId" target-entity="ReleaseManager" connected-entity-id="_139661231659044" connected-attribute-id="_139661231659099" id="_139661231659052">
+                <jpa:join-column name="release_id" referenced-column-name="id_release_number" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="TextArea" minimized="false" id="_139661231659038">
+        <jpa:table name="TEXT_AREA"/>
+        <jpa:attributes>
+            <jpa:id name="idTextArea" attribute-type="java.lang.String" id="_139661231659053">
+                <jpa:column name="id_text_area" unique="false" nullable="false" insertable="true" updatable="true" table="TEXT_AREA" length="48"/>
+            </jpa:id>
+            <jpa:basic name="textArea" optional="true" attribute-type="java.lang.String" id="_139661231659054">
+                <jpa:column name="text_area" unique="false" nullable="true" insertable="true" updatable="true" table="TEXT_AREA" length="4096"/>
+            </jpa:basic>
+            <jpa:many-to-one name="questionId" target-entity="ReleaseTypeQuestions" connected-entity-id="_139661231659043" connected-attribute-id="_139661231659081" id="_139661231659055">
+                <jpa:join-column name="question_id" referenced-column-name="id_question" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one name="releaseId" target-entity="ReleaseManager" connected-entity-id="_139661231659044" connected-attribute-id="_139661231659099" id="_139661231659056">
+                <jpa:join-column name="release_id" referenced-column-name="id_release_number" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ReleaseOptions" minimized="false" id="_139661231659039">
+        <jpa:table name="RELEASE_OPTIONS"/>
+        <jpa:attributes>
+            <jpa:id name="idOptions" attribute-type="java.lang.String" id="_139661231659057">
+                <jpa:column name="id_options" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_OPTIONS" length="48"/>
+            </jpa:id>
+            <jpa:basic name="optionType" optional="false" attribute-type="java.lang.String" id="_139661231659058">
+                <jpa:column name="option_type" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_OPTIONS" length="32"/>
+            </jpa:basic>
+            <jpa:basic name="optionName" optional="false" attribute-type="java.lang.String" id="_139661231659059">
+                <jpa:column name="option_name" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_OPTIONS" length="32"/>
+            </jpa:basic>
+            <jpa:basic name="optionValue" optional="false" attribute-type="java.lang.String" id="_139661231659060">
+                <jpa:column name="option_value" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_OPTIONS" length="64"/>
+            </jpa:basic>
+            <jpa:basic name="optionDescription" optional="true" attribute-type="java.lang.String" id="_139661231659061">
+                <jpa:column name="option_description" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_OPTIONS" length="128"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Attachments" minimized="false" id="_139661231659040">
+        <jpa:table name="ATTACHMENTS"/>
+        <jpa:attributes>
+            <jpa:id name="idAttachment" attribute-type="java.lang.String" id="_139661231659062">
+                <jpa:column name="id_attachment" unique="false" nullable="false" insertable="true" updatable="true" table="ATTACHMENTS" length="48"/>
+            </jpa:id>
+            <jpa:basic name="attachmentLocation" optional="false" attribute-type="java.lang.String" id="_139661231659063">
+                <jpa:column name="attachment_location" unique="false" nullable="false" insertable="true" updatable="true" table="ATTACHMENTS" length="1024"/>
+            </jpa:basic>
+            <jpa:many-to-one name="releaseId" target-entity="ReleaseManager" connected-entity-id="_139661231659044" connected-attribute-id="_139661231659099" id="_139661231659064">
+                <jpa:join-column name="release_id" referenced-column-name="id_release_number" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ImpactedCountries" minimized="false" id="_139661231659041">
+        <jpa:table name="IMPACTED_COUNTRIES"/>
+        <jpa:attributes>
+            <jpa:id name="countryIsoId" attribute-type="java.lang.String" id="_139661231659065">
+                <jpa:column name="country_iso_id" unique="false" nullable="false" insertable="true" updatable="true" table="IMPACTED_COUNTRIES" length="3"/>
+            </jpa:id>
+            <jpa:basic name="regionName" optional="false" attribute-type="java.lang.String" id="_139661231659066">
+                <jpa:column name="region_name" unique="false" nullable="false" insertable="true" updatable="true" table="IMPACTED_COUNTRIES" length="12"/>
+            </jpa:basic>
+            <jpa:basic name="countryName" optional="false" attribute-type="java.lang.String" id="_139661231659067">
+                <jpa:column name="country_name" unique="false" nullable="false" insertable="true" updatable="true" table="IMPACTED_COUNTRIES" length="128"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ReleaseApplication" minimized="false" id="_139661231659042">
+        <jpa:table name="RELEASE_APPLICATION"/>
+        <jpa:attributes>
+            <jpa:id name="applicationName" attribute-type="java.lang.String" id="_139661231659068">
+                <jpa:column name="application_name" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_APPLICATION" length="48"/>
+            </jpa:id>
+            <jpa:basic name="applicationDescription" optional="true" attribute-type="java.lang.String" id="_139661231659069">
+                <jpa:column name="application_description" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_APPLICATION" length="128"/>
+            </jpa:basic>
+            <jpa:basic name="itsmTemplate" optional="true" attribute-type="java.lang.String" id="_139661231659070">
+                <jpa:column name="itsm_template" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_APPLICATION" length="1024"/>
+            </jpa:basic>
+            <jpa:basic name="versionTextRequired" optional="true" attribute-type="java.lang.String" id="_139661231659071">
+                <jpa:column name="version_text_required" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_APPLICATION" length="3"/>
+            </jpa:basic>
+            <jpa:one-to-many name="releaseTypeQuestionsCollection" target-entity="ReleaseTypeQuestions" mapped-by="questionType" connected-entity-id="_139661231659043" connected-attribute-id="_139661231659083" id="_139661231659072"/>
+            <jpa:one-to-many name="releaseManagerCollection" target-entity="ReleaseManager" mapped-by="applicationName" connected-entity-id="_139661231659044" connected-attribute-id="_1396612316590102" id="_139661231659073"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ReleaseTypeQuestions" minimized="false" id="_139661231659043">
+        <jpa:table name="RELEASE_TYPE_QUESTIONS"/>
+        <jpa:attributes>
+            <jpa:id name="idQuestion" attribute-type="java.lang.String" id="_139661231659074">
+                <jpa:column name="id_question" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_TYPE_QUESTIONS" length="48"/>
+            </jpa:id>
+            <jpa:basic name="questionOrder" optional="false" attribute-type="int" id="_139661231659075">
+                <jpa:column name="question_order" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_TYPE_QUESTIONS"/>
+            </jpa:basic>
+            <jpa:basic name="questionName" optional="false" attribute-type="java.lang.String" id="_139661231659076">
+                <jpa:column name="question_name" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_TYPE_QUESTIONS" length="48"/>
+            </jpa:basic>
+            <jpa:basic name="questionDescription" optional="true" attribute-type="java.lang.String" id="_139661231659077">
+                <jpa:column name="question_description" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_TYPE_QUESTIONS" length="255"/>
+            </jpa:basic>
+            <jpa:basic name="booleanYesNo" optional="false" attribute-type="java.lang.String" id="_139661231659078">
+                <jpa:column name="boolean_yes_no" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_TYPE_QUESTIONS" length="3"/>
+            </jpa:basic>
+            <jpa:basic name="mandatoryYesNo" optional="false" attribute-type="java.lang.String" id="_139661231659079">
+                <jpa:column name="mandatory_yes_no" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_TYPE_QUESTIONS" length="3"/>
+            </jpa:basic>
+            <jpa:basic name="textTemplate" optional="true" attribute-type="java.lang.String" id="_139661231659080">
+                <jpa:column name="text_template" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_TYPE_QUESTIONS" length="2048"/>
+            </jpa:basic>
+            <jpa:many-to-one name="questionProperty" target-entity="ReleaseProperties" optional="false" connected-entity-id="_139661231659045" connected-attribute-id="_1396612316590110" id="_139661231659082">
+                <jpa:join-column name="question_property" referenced-column-name="id_properties" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:many-to-one name="questionType" target-entity="ReleaseApplication" optional="false" connected-entity-id="_139661231659042" connected-attribute-id="_139661231659072" id="_139661231659083">
+                <jpa:join-column name="question_type" referenced-column-name="application_name" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many name="textAreaCollection" target-entity="TextArea" mapped-by="questionId" connected-entity-id="_139661231659038" connected-attribute-id="_139661231659055" id="_139661231659081"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ReleaseManager" minimized="false" id="_139661231659044">
+        <jpa:table name="RELEASE_MANAGER"/>
+        <jpa:attributes>
+            <jpa:id name="idReleaseNumber" attribute-type="java.lang.String" id="_139661231659084">
+                <jpa:column name="id_release_number" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MANAGER" length="48"/>
+            </jpa:id>
+            <jpa:basic name="versionNumber" optional="false" attribute-type="java.lang.String" id="_139661231659085">
+                <jpa:column name="version_number" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MANAGER" length="12"/>
+            </jpa:basic>
+            <jpa:basic name="primarySupportAd" optional="false" attribute-type="java.lang.String" id="_139661231659086">
+                <jpa:column name="primary_support_ad" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MANAGER" length="128"/>
+            </jpa:basic>
+            <jpa:basic name="regionsImpacted" optional="false" attribute-type="java.lang.String" id="_139661231659087">
+                <jpa:column name="regions_impacted" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MANAGER" length="32"/>
+            </jpa:basic>
+            <jpa:basic name="dbaTask" optional="false" attribute-type="java.lang.String" id="_139661231659088">
+                <jpa:column name="dba_task" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MANAGER" length="3"/>
+            </jpa:basic>
+            <jpa:basic name="workRequestedBy" optional="false" attribute-type="java.lang.String" id="_139661231659089">
+                <jpa:column name="work_requested_by" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MANAGER" length="10"/>
+            </jpa:basic>
+            <jpa:basic name="statusInd" optional="false" attribute-type="java.lang.String" id="_139661231659090">
+                <jpa:column name="status_ind" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MANAGER" length="12"/>
+            </jpa:basic>
+            <jpa:basic name="rrmApproved" optional="true" attribute-type="java.lang.String" id="_139661231659091">
+                <jpa:column name="rrm_approved" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER" length="3"/>
+            </jpa:basic>
+            <jpa:basic name="rrmApprovedAutomation" optional="true" attribute-type="java.lang.String" id="_139661231659092">
+                <jpa:column name="rrm_approved_automation" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER" length="3"/>
+            </jpa:basic>
+            <jpa:basic name="releaseStart" optional="true" attribute-type="java.util.Date" id="_139661231659093">
+                <jpa:column name="release_start" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="releaseEnd" optional="true" attribute-type="java.util.Date" id="_139661231659094">
+                <jpa:column name="release_end" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="changeType" optional="true" attribute-type="java.lang.String" id="_139661231659095">
+                <jpa:column name="change_type" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER" length="32"/>
+            </jpa:basic>
+            <jpa:basic name="releaseType" optional="true" attribute-type="java.lang.String" id="_139661231659096">
+                <jpa:column name="release_type" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER" length="12"/>
+            </jpa:basic>
+            <jpa:basic name="rrmContact" optional="true" attribute-type="java.lang.String" id="_139661231659097">
+                <jpa:column name="rrm_contact" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER" length="48"/>
+            </jpa:basic>
+            <jpa:basic name="releaseId" optional="true" attribute-type="java.lang.String" id="_139661231659098">
+                <jpa:column name="release_id" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MANAGER" length="64"/>
+            </jpa:basic>
+            <jpa:many-to-one name="applicationName" target-entity="ReleaseApplication" optional="false" connected-entity-id="_139661231659042" connected-attribute-id="_139661231659073" id="_1396612316590102">
+                <jpa:join-column name="application_name" referenced-column-name="application_name" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many name="unixSaCollection" target-entity="UnixSa" mapped-by="releaseId" connected-entity-id="_139661231659047" connected-attribute-id="_1396612316590120" id="_139661231659099"/>
+            <jpa:one-to-many name="textAreaCollection" target-entity="TextArea" mapped-by="releaseId" id="_1396612316590100"/>
+            <jpa:one-to-many name="attachmentsCollection" target-entity="Attachments" mapped-by="releaseId" id="_1396612316590101"/>
+            <jpa:one-to-many name="dbaTaskDetailsCollection" target-entity="DbaTaskDetails" mapped-by="releaseId" id="_1396612316590103"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ReleaseProperties" minimized="false" id="_139661231659045">
+        <jpa:table name="RELEASE_PROPERTIES"/>
+        <jpa:attributes>
+            <jpa:id name="idProperties" attribute-type="java.lang.String" id="_1396612316590104">
+                <jpa:column name="id_properties" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_PROPERTIES" length="48"/>
+            </jpa:id>
+            <jpa:basic name="propertyType" optional="false" attribute-type="java.lang.String" id="_1396612316590105">
+                <jpa:column name="property_type" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_PROPERTIES" length="32"/>
+            </jpa:basic>
+            <jpa:basic name="propertyName" optional="false" attribute-type="java.lang.String" id="_1396612316590106">
+                <jpa:column name="property_name" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_PROPERTIES" length="32"/>
+            </jpa:basic>
+            <jpa:basic name="propertyValue" optional="false" attribute-type="java.lang.String" id="_1396612316590107">
+                <jpa:column name="property_value" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_PROPERTIES" length="64"/>
+            </jpa:basic>
+            <jpa:basic name="propertyDescription" optional="true" attribute-type="java.lang.String" id="_1396612316590108">
+                <jpa:column name="property_description" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_PROPERTIES" length="128"/>
+            </jpa:basic>
+            <jpa:basic name="propertyLocale" optional="true" attribute-type="java.lang.String" id="_1396612316590109">
+                <jpa:column name="property_locale" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_PROPERTIES" length="12"/>
+            </jpa:basic>
+            <jpa:one-to-many name="releaseTypeQuestionsCollection" target-entity="ReleaseTypeQuestions" mapped-by="questionProperty" connected-entity-id="_139661231659043" connected-attribute-id="_139661231659082" id="_1396612316590110"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ReleaseMiscInfo" minimized="false" id="_139661231659046">
+        <jpa:table name="RELEASE_MISC_INFO"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.String" id="_1396612316590111">
+                <jpa:column name="id" unique="false" nullable="false" insertable="true" updatable="true" table="RELEASE_MISC_INFO" length="48"/>
+            </jpa:id>
+            <jpa:basic name="dataKey" optional="true" attribute-type="java.lang.String" id="_1396612316590112">
+                <jpa:column name="data_key" unique="false" nullable="true" insertable="true" updatable="true" table="RELEASE_MISC_INFO" length="48"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="DbaTaskDetails" minimized="false" id="_139661231659047">
+        <jpa:table name="DBA_TASK_DETAILS"/>
+        <jpa:attributes>
+            <jpa:id name="phasedId" attribute-type="java.lang.String" id="_1396612316590113">
+                <jpa:column name="phased_id" unique="false" nullable="false" insertable="true" updatable="true" table="DBA_TASK_DETAILS" length="48"/>
+            </jpa:id>
+            <jpa:basic name="phased" optional="false" attribute-type="java.lang.String" id="_1396612316590114">
+                <jpa:column name="phased_" unique="false" nullable="false" insertable="true" updatable="true" table="DBA_TASK_DETAILS" length="3"/>
+            </jpa:basic>
+            <jpa:basic name="taskStart" optional="true" attribute-type="java.util.Date" id="_1396612316590115">
+                <jpa:column name="task_start" unique="false" nullable="true" insertable="true" updatable="true" table="DBA_TASK_DETAILS"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="taskEnd" optional="true" attribute-type="java.util.Date" id="_1396612316590116">
+                <jpa:column name="task_end" unique="false" nullable="true" insertable="true" updatable="true" table="DBA_TASK_DETAILS"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="testServer" optional="true" attribute-type="java.lang.String" id="_1396612316590117">
+                <jpa:column name="test_server" unique="false" nullable="true" insertable="true" updatable="true" table="DBA_TASK_DETAILS" length="255"/>
+            </jpa:basic>
+            <jpa:basic name="listOfSpEbf" optional="true" attribute-type="java.lang.String" id="_1396612316590118">
+                <jpa:column name="list_of_sp_ebf" unique="false" nullable="true" insertable="true" updatable="true" table="DBA_TASK_DETAILS" length="2048"/>
+            </jpa:basic>
+            <jpa:basic name="spEbfLabel" optional="true" attribute-type="java.lang.String" id="_1396612316590119">
+                <jpa:column name="sp_ebf_label" unique="false" nullable="true" insertable="true" updatable="true" table="DBA_TASK_DETAILS" length="128"/>
+            </jpa:basic>
+            <jpa:many-to-one name="releaseId" target-entity="ReleaseManager" connected-entity-id="_139661231659044" connected-attribute-id="_139661231659099" id="_1396612316590120">
+                <jpa:join-column name="release_id" referenced-column-name="id_release_number" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:diagram id="_139661231657435">
+        <plane elementRef="_139661231657434" id="_139661231657436_p"/>
+    </jpa:diagram>
+</jpa:entity-mappings>

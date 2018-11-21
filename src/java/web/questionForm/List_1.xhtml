@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+    <h:form id="ReleaseManagerCreateForm2">
+
+        <h:panelGroup id="display">
+            <p:fieldset id="master_rec" legend="Please Enter Master Details"  toggleable="true" collapsed="true">
+                <p:panelGrid columns="1">
+                    <h:inputText id="idReleaseNumber" value="#{releaseManagerController.selected.idReleaseNumber}" title="#{webRelease.CreateReleaseManagerTitle_idReleaseNumber}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_idReleaseNumber}" size="48" maxlength="48" rendered="true"/>
+                    <p:inputText id="versionNumber" value="#{releaseManagerController.selected.versionNumber}" title="#{webRelease.CreateReleaseManagerTitle_versionNumber}" required="true" rendered="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_versionNumber}" size="12" maxlength="12"  />
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_applicationName}" for="applicationName" />
+                    <h:panelGroup>
+                        <p:selectOneMenu id="applicationName" value="#{releaseManagerController.selected.applicationName}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_applicationName}"  >
+                            <f:selectItem itemLabel="#{webRelease.SelectOneMessage}"/>
+                            <f:selectItems value="#{releaseApplicationController.items}"
+                                           var="applicationNameItem"
+                                           itemValue="#{applicationNameItem}"
+                                           itemLabel="#{applicationNameItem.applicationName.toString()}"
+                                           />
+                            <f:converter binding="#{releaseApplicationConverter}"/>
+                        </p:selectOneMenu>
+                        <p:tooltip for="applicationName" value="#{releaseManagerController.getComponentMessages('applicationName', webRelease.CreateReleaseManagerHelpText_applicationName)}"/>
+                    </h:panelGroup>
+
+                      <p:inputText id="releaseType" value="#{releaseManagerController.selected.releaseType}" title="#{webRelease.CreateReleaseManagerTitle_releaseType}" size="12" maxlength="12" rendered="false" />
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_primarySupportAd}" for="primarySupportAd" />
+                    <h:panelGroup>
+                        <p:inputText id="primarySupportAd" value="#{releaseManagerController.selected.primarySupportAd}" title="#{webRelease.CreateReleaseManagerTitle_primarySupportAd}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_primarySupportAd}" size="128" maxlength="128"/>
+                        <p:tooltip for="primarySupportAd" value="#{releaseManagerController.getComponentMessages('primarySupportAd', webRelease.CreateReleaseManagerHelpText_primarySupportAd)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_regionsImpacted}" for="regionsImpacted" />
+                    <h:panelGroup>
+                        <p:inputText id="regionsImpacted" value="#{releaseManagerController.selected.regionsImpacted}" title="#{webRelease.CreateReleaseManagerTitle_regionsImpacted}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_regionsImpacted}" size="32" maxlength="32"/>
+                        <p:tooltip for="regionsImpacted" value="#{releaseManagerController.getComponentMessages('regionsImpacted', webRelease.CreateReleaseManagerHelpText_regionsImpacted)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_dbaTask}" for="dbaTask" />
+                    <h:panelGroup>
+                        <p:inputText id="dbaTask" value="#{releaseManagerController.selected.dbaTask}" title="#{webRelease.CreateReleaseManagerTitle_dbaTask}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_dbaTask}" size="3" maxlength="3"/>
+                        <p:tooltip for="dbaTask" value="#{releaseManagerController.getComponentMessages('dbaTask', webRelease.CreateReleaseManagerHelpText_dbaTask)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_workRequestedBy}" for="workRequestedBy" />
+                    <h:panelGroup>
+                        <p:inputText id="workRequestedBy" value="#{releaseManagerController.selected.workRequestedBy}" title="#{webRelease.CreateReleaseManagerTitle_workRequestedBy}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_workRequestedBy}" size="10" maxlength="10"/>
+                        <p:tooltip for="workRequestedBy" value="#{releaseManagerController.getComponentMessages('workRequestedBy', webRelease.CreateReleaseManagerHelpText_workRequestedBy)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_statusInd}" for="statusInd" />
+                    <h:panelGroup>
+                        <p:inputText id="statusInd" value="#{releaseManagerController.selected.statusInd}" title="#{webRelease.CreateReleaseManagerTitle_statusInd}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_statusInd}" size="12" maxlength="12"/>
+                        <p:tooltip for="statusInd" value="#{releaseManagerController.getComponentMessages('statusInd', webRelease.CreateReleaseManagerHelpText_statusInd)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_rrmApproved}" for="rrmApproved" />
+                    <h:panelGroup>
+                        <p:inputText id="rrmApproved" value="#{releaseManagerController.selected.rrmApproved}" title="#{webRelease.CreateReleaseManagerTitle_rrmApproved}" size="3" maxlength="3"/>
+                        <p:tooltip for="rrmApproved" value="#{releaseManagerController.getComponentMessages('rrmApproved', webRelease.CreateReleaseManagerHelpText_rrmApproved)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_rrmApprovedAutomation}" for="rrmApprovedAutomation" />
+                    <h:panelGroup>
+                        <p:inputText id="rrmApprovedAutomation" value="#{releaseManagerController.selected.rrmApprovedAutomation}" title="#{webRelease.CreateReleaseManagerTitle_rrmApprovedAutomation}" size="3" maxlength="3"/>
+                        <p:tooltip for="rrmApprovedAutomation" value="#{releaseManagerController.getComponentMessages('rrmApprovedAutomation', webRelease.CreateReleaseManagerHelpText_rrmApprovedAutomation)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_releaseStart}" for="releaseStart" />
+                    <h:panelGroup>
+                        <p:calendar id="releaseStart" pattern="MM/dd/yyyy HH:mm:ss" value="#{releaseManagerController.selected.releaseStart}" title="#{webRelease.CreateReleaseManagerTitle_releaseStart}"  showOn="button"/>
+                        <p:tooltip for="releaseStart" value="#{releaseManagerController.getComponentMessages('releaseStart', webRelease.CreateReleaseManagerHelpText_releaseStart)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_releaseEnd}" for="releaseEnd" />
+                    <h:panelGroup>
+                        <p:calendar id="releaseEnd" pattern="MM/dd/yyyy HH:mm:ss" value="#{releaseManagerController.selected.releaseEnd}" title="#{webRelease.CreateReleaseManagerTitle_releaseEnd}"  showOn="button"/>
+                        <p:tooltip for="releaseEnd" value="#{releaseManagerController.getComponentMessages('releaseEnd', webRelease.CreateReleaseManagerHelpText_releaseEnd)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_changeType}" for="changeType" />
+                    <h:panelGroup>
+                        <p:inputText id="changeType" value="#{releaseManagerController.selected.changeType}" title="#{webRelease.CreateReleaseManagerTitle_changeType}" size="32" maxlength="32"/>
+                        <p:tooltip for="changeType" value="#{releaseManagerController.getComponentMessages('changeType', webRelease.CreateReleaseManagerHelpText_changeType)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_rrmContact}" for="rrmContact" />
+                    <h:panelGroup>
+                        <p:inputText id="rrmContact" value="#{releaseManagerController.selected.rrmContact}" title="#{webRelease.CreateReleaseManagerTitle_rrmContact}" size="48" maxlength="48" onmouseout="Submit()"/>
+                        <p:tooltip for="rrmContact" value="#{releaseManagerController.getComponentMessages('rrmContact', webRelease.CreateReleaseManagerHelpText_rrmContact)}"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_unixSaList}" for="unixSaList" />
+                    <h:panelGroup>
+                        <p:selectManyMenu id="unixSaList" value="#{releaseManagerController.selected.unixSaList}" >
+                            <f:selectItems value="#{unixSaController.items}"
+                                           var="unixSaListItem"
+                                           itemValue="#{unixSaListItem}"
+                                           itemLabel="#{unixSaListItem.idTask.toString()}"
+                                           />
+                            <f:converter binding="#{unixSaConverter}"/>
+                        </p:selectManyMenu>
+                        <p:tooltip for="unixSaList" value="#{releaseManagerController.getComponentMessages('unixSaList', webRelease.CreateReleaseManagerHelpText_unixSaList)}"/>
+                    </h:panelGroup>
+
+                    <p:commandButton actionListener="#{releaseManagerController.saveNew}" value="#{webRelease.Save}"  update="display,:ReleaseManagerCreateForm2" />
+                
+
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="ReleaseManagerCreateDialog.hide()"/>
+
+                </p:panelGrid>
+
+            </p:fieldset>
+        </h:panelGroup>
+
+    </h:form>
+
+
+</ui:composition>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReleaseManagerViewDlg" widgetVar="ReleaseManagerViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.ViewReleaseManagerTitle}">
+            <h:form id="ReleaseManagerViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{releaseManagerController.selected != null}">
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_idReleaseNumber}"/>
+                        <h:outputText value="#{releaseManagerController.selected.idReleaseNumber}" title="#{webRelease.ViewReleaseManagerTitle_idReleaseNumber}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_versionNumber}"/>
+                        <h:outputText value="#{releaseManagerController.selected.versionNumber}" title="#{webRelease.ViewReleaseManagerTitle_versionNumber}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_primarySupportAd}"/>
+                        <h:outputText value="#{releaseManagerController.selected.primarySupportAd}" title="#{webRelease.ViewReleaseManagerTitle_primarySupportAd}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_regionsImpacted}"/>
+                        <h:outputText value="#{releaseManagerController.selected.regionsImpacted}" title="#{webRelease.ViewReleaseManagerTitle_regionsImpacted}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_dbaTask}"/>
+                        <h:outputText value="#{releaseManagerController.selected.dbaTask}" title="#{webRelease.ViewReleaseManagerTitle_dbaTask}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_workRequestedBy}"/>
+                        <h:outputText value="#{releaseManagerController.selected.workRequestedBy}" title="#{webRelease.ViewReleaseManagerTitle_workRequestedBy}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_statusInd}"/>
+                        <h:outputText value="#{releaseManagerController.selected.statusInd}" title="#{webRelease.ViewReleaseManagerTitle_statusInd}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_rrmApproved}"/>
+                        <h:outputText value="#{releaseManagerController.selected.rrmApproved}" title="#{webRelease.ViewReleaseManagerTitle_rrmApproved}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_rrmApprovedAutomation}"/>
+                        <h:outputText value="#{releaseManagerController.selected.rrmApprovedAutomation}" title="#{webRelease.ViewReleaseManagerTitle_rrmApprovedAutomation}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_releaseStart}"/>
+                        <h:outputText value="#{releaseManagerController.selected.releaseStart}" title="#{webRelease.ViewReleaseManagerTitle_releaseStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_releaseEnd}"/>
+                        <h:outputText value="#{releaseManagerController.selected.releaseEnd}" title="#{webRelease.ViewReleaseManagerTitle_releaseEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_changeType}"/>
+                        <h:outputText value="#{releaseManagerController.selected.changeType}" title="#{webRelease.ViewReleaseManagerTitle_changeType}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_releaseType}"/>
+                        <h:outputText value="#{releaseManagerController.selected.releaseType}" title="#{webRelease.ViewReleaseManagerTitle_releaseType}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_rrmContact}"/>
+                        <h:outputText value="#{releaseManagerController.selected.rrmContact}" title="#{webRelease.ViewReleaseManagerTitle_rrmContact}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_releaseId}"/>
+                        <h:outputText value="#{releaseManagerController.selected.releaseId}" title="#{webRelease.ViewReleaseManagerTitle_releaseId}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseManagerLabel_applicationName}"/>
+                        <h:outputText value="#{releaseManagerController.selected.applicationName}" title="#{webRelease.ViewReleaseManagerTitle_applicationName}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{webRelease.Close}" onclick="ReleaseManagerViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

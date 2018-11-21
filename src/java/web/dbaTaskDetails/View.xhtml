@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DbaTaskDetailsViewDlg" widgetVar="DbaTaskDetailsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.ViewDbaTaskDetailsTitle}">
+            <h:form id="DbaTaskDetailsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dbaTaskDetailsController.selected != null}">
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_phasedId}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.phasedId}" title="#{webRelease.ViewDbaTaskDetailsTitle_phasedId}"/>
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_phased}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.phased}" title="#{webRelease.ViewDbaTaskDetailsTitle_phased}"/>
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_taskStart}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.taskStart}" title="#{webRelease.ViewDbaTaskDetailsTitle_taskStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_taskEnd}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.taskEnd}" title="#{webRelease.ViewDbaTaskDetailsTitle_taskEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_testServer}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.testServer}" title="#{webRelease.ViewDbaTaskDetailsTitle_testServer}"/>
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_listOfSpEbf}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.listOfSpEbf}" title="#{webRelease.ViewDbaTaskDetailsTitle_listOfSpEbf}"/>
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_spEbfLabel}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.spEbfLabel}" title="#{webRelease.ViewDbaTaskDetailsTitle_spEbfLabel}"/>
+                        <h:outputText value="#{webRelease.ViewDbaTaskDetailsLabel_releaseId}"/>
+                        <h:outputText value="#{dbaTaskDetailsController.selected.releaseId}" title="#{webRelease.ViewDbaTaskDetailsTitle_releaseId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{webRelease.Close}" onclick="DbaTaskDetailsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

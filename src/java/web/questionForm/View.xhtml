@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReleaseTypeQuestionsViewDlg" widgetVar="ReleaseTypeQuestionsViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{webRelease.ViewReleaseTypeQuestionsTitle}" closeOnEscape="true">
+
+            <h:form id="ReleaseTypeQuestionsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{releaseTypeQuestionsController.selected != null}">
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_idQuestion}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.idQuestion}" title="#{webRelease.ViewReleaseTypeQuestionsTitle_idQuestion}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_questionOrder}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.questionOrder}" title="#{webRelease.ViewReleaseTypeQuestionsTitle_questionOrder}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_questionName}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.questionName}" title="#{webRelease.ViewReleaseTypeQuestionsTitle_questionName}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_questionDescription}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.questionDescription}" title="#{webRelease.ViewReleaseTypeQuestionsTitle_questionDescription}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_booleanYesNo}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.booleanYesNo}" title="#{webRelease.ViewReleaseTypeQuestionsTitle_booleanYesNo}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_mandatoryYesNo}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.mandatoryYesNo}" title="#{webRelease.ViewReleaseTypeQuestionsTitle_mandatoryYesNo}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_textTemplate}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.textTemplate}" title="#{webRelease.ViewReleaseTypeQuestionsTitle_textTemplate}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_questionProperty}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.questionProperty.propertyName}"/>
+
+                        <h:outputText value="#{webRelease.ViewReleaseTypeQuestionsLabel_questionType}"/>
+                        <h:outputText value="#{releaseTypeQuestionsController.selected.questionType.applicationName}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{webRelease.Close}" onclick="ReleaseTypeQuestionsViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DbaTaskDetailsCreateDlg6" widgetVar="DbaTaskDetailsCreateDialog6" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.CreateDbaTaskDetailsTitle}">
+            <h:form id="DbaTaskDetailsCreateForm5">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dbaTaskDetailsController.selected != null}">
+                        <p:outputLabel value="Phase Id" for="phased" />
+                        <p:inputText id="phased" value="#{dbaTaskDetailsController.selected.phased}" title="#{webRelease.CreateDbaTaskDetailsTitle_phased}" required="true" requiredMessage="#{webRelease.CreateDbaTaskDetailsRequiredMessage_phased}" />
+                        <p:message for="phased" showDetail="true" />
+                        <h:outputText id="counter" />
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_taskStart}" for="taskStart" />
+                        <p:calendar id="taskStart" pattern="EEE, MM/dd/yyyy HH:mm:ss" value="#{dbaTaskDetailsController.selected.taskStart}" title="#{webRelease.EditDbaTaskDetailsTitle_taskStart}"  showOn="button"/>
+                        <p:message for="taskStart" showDetail="true" />
+
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_taskEnd}" for="taskEnd" />
+                        <p:calendar id="taskEnd" pattern="EEE, MM/dd/yyyy HH:mm:ss" value="#{dbaTaskDetailsController.selected.taskEnd}" title="#{webRelease.EditDbaTaskDetailsTitle_taskEnd}"  showOn="button"/>
+                        <p:message for="taskEnd" showDetail="true" />
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_testServer}" for="testServer" />
+                        <p:inputTextarea id="testServer" value="#{dbaTaskDetailsController.selected.testServer}" title="#{webRelease.CreateDbaTaskDetailsTitle_testServer}" />
+                        <p:message for="testServer" showDetail="true" />
+
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_listOfSpEbf}" for="listOfSpEbf" />
+                        <p:inputTextarea id="listOfSpEbf" value="#{dbaTaskDetailsController.selected.listOfSpEbf}" title="#{webRelease.CreateDbaTaskDetailsTitle_listOfSpEbf}" rows="20" cols="132" maxlength="4096" counter="counter"  counterTemplate="{0} characters remaining."/>
+                        <p:message for="listOfSpEbf" showDetail="true" />
+
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_spEbfLabel}" for="spEbfLabel" />
+                        <p:inputText id="spEbfLabel" value="#{dbaTaskDetailsController.selected.spEbfLabel}" title="#{webRelease.CreateDbaTaskDetailsTitle_spEbfLabel}" />
+                        <p:message for="spEbfLabel" showDetail="true" />
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dbaTaskDetailsController.create}" value="#{webRelease.Save}" update="display,:ReleaseManagerCreateForm3,dbataskgrowl" oncomplete="handleSubmit(args,'DbaTaskDetailsCreateDialog6');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="DbaTaskDetailsCreateDialog5.hide()"/>
+                    <p:growl id="dbataskgrowl" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

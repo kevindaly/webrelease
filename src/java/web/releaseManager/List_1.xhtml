@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{webRelease.ListReleaseManagerTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ReleaseManagerListForm">
+                <p:panel header="#{webRelease.ListReleaseManagerTitle}">
+                    <p:dataTable id="datalist" value="#{releaseManagerController.items}" var="item"
+                                 selectionMode="single" selection="#{releaseManagerController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idReleaseNumber}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_idReleaseNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idReleaseNumber}"/>
+                        </p:column>
+                        <p:column rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_versionNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.versionNumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_primarySupportAd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.primarySupportAd}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_regionsImpacted}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.regionsImpacted}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_dbaTask}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dbaTask}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_workRequestedBy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.workRequestedBy}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_statusInd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statusInd}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_rrmApproved}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rrmApproved}"/>
+                        </p:column>
+                        <p:column rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_rrmApprovedAutomation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rrmApprovedAutomation}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_releaseStart}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.releaseStart}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_releaseEnd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.releaseEnd}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_changeType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.changeType}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_releaseType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.releaseType}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_rrmContact}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rrmContact}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_releaseId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.releaseId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseManagerTitle_applicationName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.applicationName}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{webRelease.Create}" actionListener="#{releaseManagerController.prepareCreate}" update=":ReleaseManagerCreateForm" oncomplete="PF('ReleaseManagerCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{webRelease.View}" update=":ReleaseManagerViewForm" oncomplete="PF('ReleaseManagerViewDialog').show()" disabled="#{empty releaseManagerController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{webRelease.Edit}" update=":ReleaseManagerEditForm" oncomplete="PF('ReleaseManagerEditDialog').show()" disabled="#{empty releaseManagerController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{webRelease.Delete}" actionListener="#{releaseManagerController.destroy}" update=":growl,datalist" disabled="#{empty releaseManagerController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

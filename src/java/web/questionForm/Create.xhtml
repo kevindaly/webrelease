@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReleaseTypeQuestionsCreateDlg" widgetVar="ReleaseTypeQuestionsCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{webRelease.CreateReleaseTypeQuestionsTitle}" closeOnEscape="true">
+
+            <h:form id="ReleaseTypeQuestionsCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_idQuestion}" for="idQuestion" />
+                        <h:panelGroup>
+                            <p:inputText id="idQuestion" value="#{releaseTypeQuestionsController.selected.idQuestion}" title="#{webRelease.CreateReleaseTypeQuestionsTitle_idQuestion}" required="true" requiredMessage="#{webRelease.CreateReleaseTypeQuestionsRequiredMessage_idQuestion}" size="48" maxlength="48"/>
+                            <p:tooltip for="idQuestion" value="#{releaseTypeQuestionsController.getComponentMessages('idQuestion', webRelease.CreateReleaseTypeQuestionsHelpText_idQuestion)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_questionOrder}" for="questionOrder" />
+                        <h:panelGroup>
+                            <p:inputText id="questionOrder" value="#{releaseTypeQuestionsController.selected.questionOrder}" title="#{webRelease.CreateReleaseTypeQuestionsTitle_questionOrder}" required="true" requiredMessage="#{webRelease.CreateReleaseTypeQuestionsRequiredMessage_questionOrder}"/>
+                            <p:tooltip for="questionOrder" value="#{releaseTypeQuestionsController.getComponentMessages('questionOrder', webRelease.CreateReleaseTypeQuestionsHelpText_questionOrder)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_questionName}" for="questionName" />
+                        <h:panelGroup>
+                            <p:inputText id="questionName" value="#{releaseTypeQuestionsController.selected.questionName}" title="#{webRelease.CreateReleaseTypeQuestionsTitle_questionName}" required="true" requiredMessage="#{webRelease.CreateReleaseTypeQuestionsRequiredMessage_questionName}" size="48" maxlength="48"/>
+                            <p:tooltip for="questionName" value="#{releaseTypeQuestionsController.getComponentMessages('questionName', webRelease.CreateReleaseTypeQuestionsHelpText_questionName)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_questionDescription}" for="questionDescription" />
+                        <h:panelGroup>
+                            <p:inputText id="questionDescription" value="#{releaseTypeQuestionsController.selected.questionDescription}" title="#{webRelease.CreateReleaseTypeQuestionsTitle_questionDescription}" size="255" maxlength="255"/>
+                            <p:tooltip for="questionDescription" value="#{releaseTypeQuestionsController.getComponentMessages('questionDescription', webRelease.CreateReleaseTypeQuestionsHelpText_questionDescription)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_booleanYesNo}" for="booleanYesNo" />
+                        <h:panelGroup>
+                            <p:inputText id="booleanYesNo" value="#{releaseTypeQuestionsController.selected.booleanYesNo}" title="#{webRelease.CreateReleaseTypeQuestionsTitle_booleanYesNo}" required="true" requiredMessage="#{webRelease.CreateReleaseTypeQuestionsRequiredMessage_booleanYesNo}" size="3" maxlength="3"/>
+                            <p:tooltip for="booleanYesNo" value="#{releaseTypeQuestionsController.getComponentMessages('booleanYesNo', webRelease.CreateReleaseTypeQuestionsHelpText_booleanYesNo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_mandatoryYesNo}" for="mandatoryYesNo" />
+                        <h:panelGroup>
+                            <p:inputText id="mandatoryYesNo" value="#{releaseTypeQuestionsController.selected.mandatoryYesNo}" title="#{webRelease.CreateReleaseTypeQuestionsTitle_mandatoryYesNo}" required="true" requiredMessage="#{webRelease.CreateReleaseTypeQuestionsRequiredMessage_mandatoryYesNo}" size="3" maxlength="3"/>
+                            <p:tooltip for="mandatoryYesNo" value="#{releaseTypeQuestionsController.getComponentMessages('mandatoryYesNo', webRelease.CreateReleaseTypeQuestionsHelpText_mandatoryYesNo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_textTemplate}" for="textTemplate" />
+                        <h:panelGroup>
+                            <p:inputTextarea rows="4" cols="30" id="textTemplate" value="#{releaseTypeQuestionsController.selected.textTemplate}" title="#{webRelease.CreateReleaseTypeQuestionsTitle_textTemplate}" />
+                            <p:tooltip for="textTemplate" value="#{releaseTypeQuestionsController.getComponentMessages('textTemplate', webRelease.CreateReleaseTypeQuestionsHelpText_textTemplate)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_questionProperty}" for="questionProperty" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="questionProperty" value="#{releaseTypeQuestionsController.selected.questionProperty}" required="true" requiredMessage="#{webRelease.CreateReleaseTypeQuestionsRequiredMessage_questionProperty}">
+                                <f:selectItem itemLabel="#{webRelease.SelectOneMessage}"/>
+                                <f:selectItems value="#{releasePropertiesController.items}"
+                                               var="questionPropertyItem"
+                                               itemValue="#{questionPropertyItem}"
+                                               itemLabel="#{questionPropertyItem.propertyName.toString()}"
+                                               />
+                                <f:converter binding="#{releasePropertiesConverter}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="questionProperty" value="#{releaseTypeQuestionsController.getComponentMessages('questionProperty', webRelease.CreateReleaseTypeQuestionsHelpText_questionProperty)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseTypeQuestionsLabel_questionType}" for="questionType" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="questionType" value="#{releaseTypeQuestionsController.selected.questionType}" required="true" requiredMessage="#{webRelease.CreateReleaseTypeQuestionsRequiredMessage_questionType}">
+                                <f:selectItem itemLabel="#{webRelease.SelectOneMessage}"/>
+                                <f:selectItems value="#{releaseApplicationController.items}"
+                                               var="questionTypeItem"
+                                               itemValue="#{questionTypeItem}"
+                                               itemLabel="#{questionTypeItem.applicationName.toString()}"
+                                               />
+                                <f:converter binding="#{releaseApplicationConverter}"/>
+                            </p:selectOneMenu>
+                            <p:tooltip for="questionType" value="#{releaseTypeQuestionsController.getComponentMessages('questionType', webRelease.CreateReleaseTypeQuestionsHelpText_questionType)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{releaseTypeQuestionsController.saveNew}" value="#{webRelease.Save}" update="display,:ReleaseTypeQuestionsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ReleaseTypeQuestionsCreateDialog);"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="ReleaseTypeQuestionsCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
