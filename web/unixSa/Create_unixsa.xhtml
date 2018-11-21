@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnixSaCreateDlg5" widgetVar="UnixSaCreateDialog5" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.CreateUnixSaTitle}">
+            <h:form id="UnixSaCreateForm4">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{unixSaController.selected != null}">
+                        <p:outputLabel value="Please input Task details" for="taskDetails" />
+                        <p:inputTextarea id="taskDetails" value="#{unixSaController.selected.taskDetails}" required="true"  rows="20" cols="132" maxlength="4096" counter="counter"  counterTemplate="{0} characters remaining."/>
+                        <h:outputText id="counter" />
+
+                        <p:outputLabel value="#{webRelease.CreateUnixSaLabel_taskStartTime}" for="taskStartTime" />
+                        <p:calendar id="taskStartTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{unixSaController.selected.taskStartTime}" title="#{webRelease.EditUnixSaTitle_taskStartTime}"  showOn="button"/>
+                        <p:outputLabel value="#{webRelease.CreateUnixSaLabel_taskEndTime}" for="taskEndTime" />
+                        <p:calendar id="taskEndTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{unixSaController.selected.taskEndTime}" title="#{webRelease.EditUnixSaTitle_taskEndTime}"  showOn="button"/>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unixSaController.create}" value="#{webRelease.Save}" update="display,:ReleaseManagerCreateForm3,unixsagrowl" oncomplete="handleSubmit(args,'UnixSaCreateDialog5');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="UnixSaCreateDialog5.hide()"/>
+                    <p:growl id="unixsagrowl"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

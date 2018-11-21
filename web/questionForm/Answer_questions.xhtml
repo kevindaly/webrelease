@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      >
+
+    <ui:composition  template="/templates/site_navigation_template.xhtml">
+
+
+
+
+        <ui:define name="title">
+            <h:outputText value="#{webRelease.ListReleaseManagerTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+
+            <h:form id="ReleaseManagerCreateForm3"  enctype="multipart/form-data">
+
+
+                <p:fieldset id="boom" collapsed="false"  toggleable="false"  legend="#{webRelease.ViewReleaseManagerTitle_applicationName}:  #{releaseManagerController.selected.applicationName}  #{webRelease.ViewReleaseManagerLabel_releaseStart}:  #{releaseManagerController.selected.releaseStart}  #{webRelease.ViewReleaseManagerLabel_regionsImpacted}:  #{releaseManagerController.selected.regionsImpacted}">
+
+                </p:fieldset>
+                <p:sticky target="boom" />
+
+                <p:fieldset id="questions" legend="Answer the Following Questions (RED Questions must be answered)"  toggleable="true" collapsed="false" > 
+
+                    <p:dataTable id="datalist_questions" value="#{releaseTypeQuestionsController.questions}" var="item"
+                                 selectionMode="single" selection="#{releaseTypeQuestionsController.selected}"
+                                 rowKey="#{item.idQuestion}"
+                                 paginator="false"
+                                 rows="50" 
+                                 editable="true"
+
+                                 >
+
+                        <p:ajax event="rowSelect" update=":ReleaseManagerCreateForm3:datalist_questions:myQuestions:createmyButton"/>
+                        <p:column sortBy="#{item.idQuestion}" filterBy="#{item.idQuestion}" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_idQuestion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idQuestion}"/>
+
+                        </p:column>
+                        <p:column sortBy="#{item.questionOrder}" filterBy="#{item.questionOrder}" rendered="false" filterStyle="display:none">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionOrder}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionOrder}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.questionName}" filterBy="#{item.questionName}" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionName}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.questionDescription}" filterBy="#{item.questionDescription}" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_questionDescription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionDescription}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.booleanYesNo}" filterBy="#{item.booleanYesNo}" rendered="false">
+
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_booleanYesNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.booleanYesNo}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.mandatoryYesNo}" filterBy="#{item.mandatoryYesNo}" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="#{webRelease.ListReleaseTypeQuestionsTitle_mandatoryYesNo}"/>
+                            </f:facet>
+
+                            <f:facet name="header">
+                                <h:outputText value="#{webReleasuestionsTitle_textTemplate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.textTemplate}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.questionProperty.propertyName}" filterBy="#{item.questionProperty.propertyName}" filterStyle="display:none">
+
+
+
+                            <p:accordionPanel id="myQuestions"  >
+
+                                <p:tab title="#{item.questionProperty.propertyValue}" closable="true"  id="question" titletip="#{item.questionDescription}"> 
+                                    <h:panelGrid columns="1" style="width: 98%; height: 98%"> 
+                                            <p:commandButton id="createmyButton" icon="ui-icon-plus" value="Answer:- #{item.questionDescription}" actionListener="#{textAreaController.prepareCreate(item)}" immediate="true" update=":TextAreaCreateForm,creategrowl" oncomplete="PF('TextAreaCreateDialog').show()" style="color:red"  rendered="#{item.mandatoryYesNo == 'Yes'}"  />
+                                            <p:commandButton id="createmyButton2" icon="ui-icon-plus" value="Answer:- #{item.questionDescription}" actionListener="#{textAreaController.prepareCreate(item)}" immediate="true" update=":TextAreaCreateForm,creategrowl" oncomplete="PF('TextAreaCreateDialog').show()" style="color:blue" rendered="#{item.mandatoryYesNo != 'Yes'}"  />
+                                        <p:growl id="creategrowl"/>    
+                                        <p:message for="createmyButton" showDetail="true" />
+                                        <p:message for="createmyButton2" showDetail="true" />
+                                    </h:panelGrid >  
+                                </p:tab>
+                            </p:accordionPanel>
+                        </p:column>
+                        <p:column sortBy="#{item.questionType.applicationName}" filterBy="QLS" rendered="false" filterStyle="display:none">
+                            <f:facet name="header">
+                                <h:outputText  value="#{webRelease.ListReleaseTypeQuestionsTitle_questionType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionType.applicationName}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </p:fieldset>
+
+                <p:fieldset id="systemAdmin" legend="Please give details of System Admin procedures"  toggleable="true" collapsed="false" >
+
+                    <p:commandButton id="createsa" icon="ui-icon-plus" widgetVar="unixsaadmin" value="#{webRelease.Create} Release Details" actionListener="#{unixSaController.prepareCreate}" update=":UnixSaCreateForm4,createsamsg" oncomplete="PF('UnixSaCreateDialog5').show()"   />
+                    <p:growl id="createsamsg" />
+                
+
+                </p:fieldset>
+
+
+                <p:fieldset id="dba" legend="Please give details of dba requirements"  toggleable="true" collapsed="false" rendered="#{releaseManagerController.selected.dbaTask == 'Yes'}">
+                    <p:commandButton id="createDba" icon="ui-icon-plus" widgetVar="sysadmin" value="#{webRelease.Create} Release Details" actionListener="#{dbaTaskDetailsController.prepareCreate}" update=":DbaTaskDetailsCreateForm5,createDbamsg" oncomplete="PF('DbaTaskDetailsCreateDialog6').show()"/>
+                    <p:growl id="createDbamsg" />
+                </p:fieldset>
+
+                <p:fieldset id="uploadfile" legend="Please put attachments here"  toggleable="true" collapsed="true">
+                    <p:fileUpload fileUploadListener="#{attachmentsController.handleFileUpload}" multiple="true" update="msg" fileLimit="30" sizeLimit="3000000"/>
+                    <p:growl id="msg" />
+                </p:fieldset>
+
+                <p:commandButton value="Back" onclick="/releaseManagerMenu" />
+
+            </h:form>
+            <ui:include src="/dbaTaskDetails/Create_dbatask.xhtml"/>
+            <ui:include src="/unixSa/Create_unixsa.xhtml"/>
+            <ui:include src="/textArea/Create_textarea.xhtml"/>
+
+
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+   <h:head>
+        <title><ui:insert name="title">Chekhov Release Manager</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+
+    <h:body>
+
+        <p:growl id="growl" life="10000" globalOnly="true"/>
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="125" closable="false" collapsible="false">
+                <table width="100%"  id="northpane" >
+                    <thead >
+                        <tr>
+                            <th align="left">                        
+                                <p:graphicImage style="left" value="#{imageBean.image}" />
+                            </th>
+
+                            <th align="center">
+                                <h1 >
+                                    <h:outputText style="center" value="Chekhov - Release Manager for RAS Jira Applications" />
+                                </h1>
+                            </th>
+                            <th align="right">
+                                <h:form id="form">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                     <!--   <h:outputText value="Default Switcher:" />
+                                        <p:themeSwitcher style="width:165px" id="defaultSwitcher">
+                                            <f:selectItem itemLabel="Choose Theme" itemValue="" />
+                                            <f:selectItems value="#{themeSwitcherBean.themes}" />
+                                        </p:themeSwitcher>
+                                     -->
+                                    </h:panelGrid>
+                                </h:form>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="260">
+                <ui:include src="/releaseManagerMenu.xhtml"/> 
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="180"  closable="true" resizable="true"  collapsible="true" collapsed="true"  />
+
+            <p:layoutUnit id="centerLayout" position="center" >
+                 
+                    
+                <ui:insert name="body"/>
+                 <ui:include src="/chart.xhtml"/> 
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

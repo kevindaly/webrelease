@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReleaseOptionsViewDlg" widgetVar="ReleaseOptionsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.ViewReleaseOptionsTitle}">
+            <h:form id="ReleaseOptionsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{releaseOptionsController.selected != null}">
+                        <h:outputText value="#{webRelease.ViewReleaseOptionsLabel_idOptions}"/>
+                        <h:outputText value="#{releaseOptionsController.selected.idOptions}" title="#{webRelease.ViewReleaseOptionsTitle_idOptions}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseOptionsLabel_optionType}"/>
+                        <h:outputText value="#{releaseOptionsController.selected.optionType}" title="#{webRelease.ViewReleaseOptionsTitle_optionType}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseOptionsLabel_optionName}"/>
+                        <h:outputText value="#{releaseOptionsController.selected.optionName}" title="#{webRelease.ViewReleaseOptionsTitle_optionName}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseOptionsLabel_optionValue}"/>
+                        <h:outputText value="#{releaseOptionsController.selected.optionValue}" title="#{webRelease.ViewReleaseOptionsTitle_optionValue}"/>
+                        <h:outputText value="#{webRelease.ViewReleaseOptionsLabel_optionDescription}"/>
+                        <h:outputText value="#{releaseOptionsController.selected.optionDescription}" title="#{webRelease.ViewReleaseOptionsTitle_optionDescription}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{webRelease.Close}" onclick="ReleaseOptionsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReleaseOptionsEditDlg" widgetVar="ReleaseOptionsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.EditReleaseOptionsTitle}">
+            <h:form id="ReleaseOptionsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{releaseOptionsController.selected != null}">
+                        <p:outputLabel value="#{webRelease.EditReleaseOptionsLabel_idOptions}" for="idOptions" />
+                        <p:inputText id="idOptions" value="#{releaseOptionsController.selected.idOptions}" title="#{webRelease.EditReleaseOptionsTitle_idOptions}" required="true" requiredMessage="#{webRelease.EditReleaseOptionsRequiredMessage_idOptions}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseOptionsLabel_optionType}" for="optionType" />
+                        <p:inputText id="optionType" value="#{releaseOptionsController.selected.optionType}" title="#{webRelease.EditReleaseOptionsTitle_optionType}" required="true" requiredMessage="#{webRelease.EditReleaseOptionsRequiredMessage_optionType}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseOptionsLabel_optionName}" for="optionName" />
+                        <p:inputText id="optionName" value="#{releaseOptionsController.selected.optionName}" title="#{webRelease.EditReleaseOptionsTitle_optionName}" required="true" requiredMessage="#{webRelease.EditReleaseOptionsRequiredMessage_optionName}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseOptionsLabel_optionValue}" for="optionValue" />
+                        <p:inputText id="optionValue" value="#{releaseOptionsController.selected.optionValue}" title="#{webRelease.EditReleaseOptionsTitle_optionValue}" required="true" requiredMessage="#{webRelease.EditReleaseOptionsRequiredMessage_optionValue}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseOptionsLabel_optionDescription}" for="optionDescription" />
+                        <p:inputText id="optionDescription" value="#{releaseOptionsController.selected.optionDescription}" title="#{webRelease.EditReleaseOptionsTitle_optionDescription}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{releaseOptionsController.update}" value="#{webRelease.Save}" update="display,:ReleaseOptionsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReleaseOptionsEditDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="ReleaseOptionsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

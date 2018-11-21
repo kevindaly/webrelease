@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TextAreaCreateDlg" widgetVar="TextAreaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.CreateTextAreaTitle}">
+            <h:form id="TextAreaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{textAreaController.selected != null}">
+                        <p:outputLabel value="#{webRelease.CreateTextAreaLabel_idTextArea}" for="idTextArea" />
+                        <p:inputText id="idTextArea" value="#{textAreaController.selected.idTextArea}" title="#{webRelease.CreateTextAreaTitle_idTextArea}" required="true" requiredMessage="#{webRelease.CreateTextAreaRequiredMessage_idTextArea}"/>
+                        <p:outputLabel value="#{webRelease.CreateTextAreaLabel_textArea}" for="textArea" />
+                        <p:inputText id="textArea" value="#{textAreaController.selected.textArea}" title="#{webRelease.CreateTextAreaTitle_textArea}" />
+                        <p:outputLabel value="#{webRelease.CreateTextAreaLabel_questionId}" for="questionId" />
+                        <p:selectOneMenu id="questionId" value="#{textAreaController.selected.questionId}" >
+                            <f:selectItems value="#{releaseTypeQuestionsController.itemsAvailableSelectOne}"
+                                           var="questionIdItem"
+                                           itemValue="#{questionIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{webRelease.CreateTextAreaLabel_releaseId}" for="releaseId" />
+                        <p:selectOneMenu id="releaseId" value="#{textAreaController.selected.releaseId}" >
+                            <f:selectItems value="#{releaseManagerController.itemsAvailableSelectOne}"
+                                           var="releaseIdItem"
+                                           itemValue="#{releaseIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{textAreaController.create}" value="#{webRelease.Save}" update="display,:TextAreaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TextAreaCreateDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="TextAreaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

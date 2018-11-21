@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:form id="ReleaseManagerCreateForm3" >
+        <h:panelGroup id="display"  >
+
+            <p:panelGrid columns="3"  > 
+                <f:facet name="header"  >
+                    <p:inputText id="idReleaseNumber" value="#{releaseManagerController.selected.idReleaseNumber}" title="#{webRelease.CreateReleaseManagerTitle_idReleaseNumber}" required="false" rendered="false" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_idReleaseNumber}"/>
+                    <p:inputText id="rrmApproved" value="#{releaseManagerController.selected.rrmApproved}" title="#{webRelease.CreateReleaseManagerTitle_rrmApproved}" required="false" rendered="false"/>
+                    <p:inputText id="rrmApprovedAutomation" value="#{releaseManagerController.selected.rrmApprovedAutomation}" title="#{webRelease.CreateReleaseManagerTitle_rrmApprovedAutomation}"  required="false" rendered="false"/>
+                    <p:inputText id="statusInd" value="#{releaseManagerController.selected.statusInd}" title="#{webRelease.CreateReleaseManagerTitle_statusInd}" required="false" rendered="false" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_statusInd}"/>
+                    <p:inputText id="changeType" value="#{releaseManagerController.selected.changeType}" required="false" rendered="false" title="#{webRelease.CreateReleaseManagerTitle_changeType}" />
+                    <p:inputText id="releaseType" value="#{releaseManagerController.selected.releaseType}" required="false" rendered="false" title="#{webRelease.CreateReleaseManagerTitle_releaseType}" />
+                    <p:inputText id="releaseId" value="#{releaseManagerController.selected.releaseId}" required="false" rendered="false" title="#{webRelease.CreateReleaseManagerTitle_releaseId}" />
+
+                    <DIV  style="text-align: left;padding-top: 5px;" >
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_workRequestedBy}" for="workRequestedBy" style="left:5px;" />
+                    </DIV>
+                    <DIV style="text-align: Left; padding-top: 5px;">
+                        <p:inputText    id="workRequestedBy" value="#{releaseManagerController.selected.workRequestedBy}"  required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_workRequestedBy}" style="left: 5px"/>
+                    </DIV>
+                    <DIV style="text-align: right; padding-bottom: 10px;" >
+                        <p:message for="workRequestedBy" showDetail="true" />
+                    </DIV>
+                    
+                    
+
+                    <DIV style="text-align: left; ">
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_applicationName}" for="applicationName" />
+                    </DIV>
+                    <DIV style="text-align: left;padding-top: 5px;">
+                        <p:selectOneMenu id="applicationName" value="#{releaseManagerController.selected.applicationName}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_applicationName}">
+
+                            <f:selectItems value="#{releaseApplicationController.itemsAvailableSelectOne}"
+                                           var="applicationNameItem"
+                                           itemValue="#{applicationNameItem}"/>
+                            <p:ajax process="@this"  />
+                        </p:selectOneMenu>
+                    </DIV>
+                    <DIV style="text-align: right; padding-bottom: 10px;">
+                        <p:message for="applicationName" showDetail="true" />
+
+                    </DIV>
+
+
+                    
+                    
+
+                    <DIV style="text-align: left; ">
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_primarySupportAd}" for="primarySupportAd" />
+                    </DIV>
+                    <DIV style="text-align: left;padding-top: 5px;">
+                        <p:inputText id="primarySupportAd" value="#{releaseManagerController.selected.primarySupportAd}"  required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_primarySupportAd}"/>
+                    </DIV>
+                    <DIV style="text-align: right; padding-bottom: 10px;">
+                        <p:message for="primarySupportAd" showDetail="true" />
+                    </DIV>
+                    
+                    
+                    
+                    
+                    <DIV  style="text-align: left; ">
+
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_regionsImpacted}" for="regionsImpacted" />
+                    </DIV>
+                    <DIV style="text-align: left;">
+
+                        <p:selectManyCheckbox id="regionsImpacted" value="#{releaseManagerController.regions}" required="true" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_regionsImpacted}">
+                            <f:selectItems value="#{releaseManagerController.availableRegions}"/>  
+                        </p:selectManyCheckbox>
+                    </DIV>
+                    <DIV style="text-align: right; padding-bottom: 10px;">
+
+                        <p:message for="regionsImpacted" showDetail="true" />
+
+                    </DIV>
+                    
+                    
+                    
+                    <DIV style="text-align: left; ">
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_dbaTask}" for="dbaTask" />
+                    </DIV>
+                    <DIV style="text-align: left;">
+                        <p:selectBooleanButton  id="dbaTask" value="#{releaseManagerController.dba}"   required="true" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" />
+                    </DIV>
+                    <DIV style="text-align: right;padding-bottom: 10px;">
+                        <p:message for="unixsa" showDetail="true" />
+                    </DIV>
+
+
+
+                    <DIV  style="text-align: left; ">
+                        <p:outputLabel value="Do you have Unix Administration Tasks?" for="dbaTask" />
+                    </DIV>
+                    <DIV style="text-align: left;">
+                        <p:selectBooleanButton  id="unixsa" value="#{releaseManagerController.unixsa}"   required="true" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" />
+                    </DIV>
+                    <DIV style="text-align: right;padding-bottom: 10px;">
+                        <p:message for="unixsa" showDetail="true" />
+                    </DIV>
+
+
+
+
+                    <DIV  style="text-align: left;padding-top: 10px">
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_releaseStart}" for="releaseStart"  />
+                    </DIV>
+                    <DIV style="text-align: left;">
+                        <p:calendar id="releaseStart" pattern="EEE, dd MMM yyyy HH:mm" value="#{releaseManagerController.selected.releaseStart}" required="true" title="#{webRelease.EditReleaseManagerTitle_releaseStart}"  showOn="button"/>
+                    </DIV>
+                    <DIV style="text-align: right;padding-bottom: 10px;">
+                        <p:message for="releaseStart" showDetail="true" /> 
+                    </DIV>
+
+
+
+
+                    <DIV  style="text-align: left;padding-top: 10px; ">
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_releaseEnd}" for="releaseEnd"  />
+                    </DIV>
+                    <DIV style="text-align: left;">
+                        <p:calendar id="releaseEnd" pattern="EEE, dd MMM yyyy HH:mm" value="#{releaseManagerController.selected.releaseEnd}" title="#{webRelease.EditReleaseManagerTitle_releaseEnd}"  showOn="button" requiredMessage="Please correct date"/>
+                    </DIV>
+                    <DIV style="text-align: right;padding-bottom: 10px;">
+                        <p:message for="releaseEnd" showDetail="true" />
+                    </DIV>
+
+
+
+                    <DIV  style="text-align: left; ">
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_rrmContact}" for="rrmContact" styleClass="cssblock" rendered="false"/>
+                    </DIV>
+                    <DIV style="text-align: left;padding-top: 5px;">
+                        <p:inputText id="rrmContact" value="#{releaseManagerController.selected.rrmContact}" title="#{webRelease.CreateReleaseManagerTitle_rrmContact}" rendered="#{releaseManagerController.selected.applicationName == 'RTR'}"/>
+                    </DIV>
+                    <DIV style="text-align: right;padding-bottom: 10px;">
+                        <p:message for="rrmContact" showDetail="true" />                    
+                    </DIV>
+
+
+
+
+                    <DIV style="text-align: left; ">
+                        <p:outputLabel value="#{webRelease.CreateReleaseManagerLabel_versionNumber}" for="versionNumber" styleClass="cssblock" rendered="false"/>
+                    </DIV>
+                    <DIV style="text-align: left;padding-top: 5px;">
+                        <p:inputText id="versionNumber" value="#{releaseManagerController.selected.versionNumber}" title="#{webRelease.CreateReleaseManagerTitle_versionNumber}" rendered="#{releaseManagerController.selected.applicationName == 'RTR'}" required="false" requiredMessage="#{webRelease.CreateReleaseManagerRequiredMessage_versionNumber}"/>
+                    </DIV>
+                    <DIV style="text-align: right;padding-bottom: 10px;">
+                        <p:message for="versionNumber" showDetail="true" />
+                    </DIV>
+
+
+                </f:facet>
+                <f:facet name="footer">
+                    <DIV style=" font-weight:  bolder;color: blue;">
+                        <p:commandButton id="createMyRelease" action="#{releaseManagerController.create}" value="#{webRelease.Save}" update="display,:ReleaseManagerCreateForm3,:createRelease"  style=" font-weight:  bolder;color: blueviolet;" />
+                        <p:commandButton id="cancelMyRelease" value="#{webRelease.Cancel}" onclick="p1" style=" font-weight:  bolder;color: blueviolet;"/>
+
+                    </DIV>
+                </f:facet>
+            </p:panelGrid>
+        </h:panelGroup>
+
+    </h:form>
+
+    <p:growl id="createRelease"/>
+
+
+</ui:composition>

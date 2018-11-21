@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AttachmentsCreateDlg" widgetVar="AttachmentsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.CreateAttachmentsTitle}">
+            <h:form id="AttachmentsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{attachmentsController.selected != null}">
+                        <p:outputLabel value="#{webRelease.CreateAttachmentsLabel_idAttachment}" for="idAttachment" />
+                        <p:inputText id="idAttachment" value="#{attachmentsController.selected.idAttachment}" title="#{webRelease.CreateAttachmentsTitle_idAttachment}" required="true" requiredMessage="#{webRelease.CreateAttachmentsRequiredMessage_idAttachment}"/>
+                        <p:outputLabel value="#{webRelease.CreateAttachmentsLabel_attachmentLocation}" for="attachmentLocation" />
+                        <p:inputText id="attachmentLocation" value="#{attachmentsController.selected.attachmentLocation}" title="#{webRelease.CreateAttachmentsTitle_attachmentLocation}" required="true" requiredMessage="#{webRelease.CreateAttachmentsRequiredMessage_attachmentLocation}"/>
+                        <p:outputLabel value="#{webRelease.CreateAttachmentsLabel_releaseId}" for="releaseId" />
+                        <p:selectOneMenu id="releaseId" value="#{attachmentsController.selected.releaseId}" >
+                            <f:selectItems value="#{releaseManagerController.itemsAvailableSelectOne}"
+                                           var="releaseIdItem"
+                                           itemValue="#{releaseIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{attachmentsController.create}" value="#{webRelease.Save}" update="display,:AttachmentsListForm:datalist,:growl" oncomplete="handleSubmit(args,'AttachmentsCreateDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="AttachmentsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

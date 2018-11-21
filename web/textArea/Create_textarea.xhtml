@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TextAreaCreateDlg" widgetVar="TextAreaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.CreateTextAreaTitle}" style="border:  none;">
+            <h:form id="TextAreaCreateForm" style="border:  none;">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="1" rendered="#{textAreaController.selected != null}">
+                        <p:outputLabel value="Please type your response here " for="textArea" rendered="false"/>
+                        <p:inputTextarea id="textArea" value="#{textAreaController.selected.textArea}" title="#{webRelease.CreateTextAreaTitle_textArea}" rows="20" cols="132" maxlength="4096" counter="counter"  counterTemplate="{0} characters remaining." required="#{textAreaController.questionCurrent}" requiredMessage="Please input Text"/>
+                        <p:message for="textArea" showDetail="true" />
+                        
+                        <h:outputText id="counter" />
+                    </p:panelGrid>
+
+                    <p:commandButton actionListener="#{textAreaController.create}" value="#{webRelease.Save}" update="display,:ReleaseManagerCreateForm3:datalist_questions" oncomplete="handleSubmit(args,'TextAreaCreateDialog');"/>
+                   <p:commandButton value="Close" onclick="TextAreaCreateDialog.hide()"/>
+                    <p:growl id="textaregrowl" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

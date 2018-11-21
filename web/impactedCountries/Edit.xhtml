@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImpactedCountriesEditDlg" widgetVar="ImpactedCountriesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.EditImpactedCountriesTitle}">
+            <h:form id="ImpactedCountriesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{impactedCountriesController.selected != null}">
+                        <p:outputLabel value="#{webRelease.EditImpactedCountriesLabel_countryIsoId}" for="countryIsoId" />
+                        <p:inputText id="countryIsoId" value="#{impactedCountriesController.selected.countryIsoId}" title="#{webRelease.EditImpactedCountriesTitle_countryIsoId}" required="true" requiredMessage="#{webRelease.EditImpactedCountriesRequiredMessage_countryIsoId}"/>
+                        <p:outputLabel value="#{webRelease.EditImpactedCountriesLabel_regionName}" for="regionName" />
+                        <p:inputText id="regionName" value="#{impactedCountriesController.selected.regionName}" title="#{webRelease.EditImpactedCountriesTitle_regionName}" required="true" requiredMessage="#{webRelease.EditImpactedCountriesRequiredMessage_regionName}"/>
+                        <p:outputLabel value="#{webRelease.EditImpactedCountriesLabel_countryName}" for="countryName" />
+                        <p:inputText id="countryName" value="#{impactedCountriesController.selected.countryName}" title="#{webRelease.EditImpactedCountriesTitle_countryName}" required="true" requiredMessage="#{webRelease.EditImpactedCountriesRequiredMessage_countryName}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{impactedCountriesController.update}" value="#{webRelease.Save}" update="display,:ImpactedCountriesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ImpactedCountriesEditDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="ImpactedCountriesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

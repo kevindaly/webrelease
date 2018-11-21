@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnixSaEditDlg" widgetVar="UnixSaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.EditUnixSaTitle}">
+            <h:form id="UnixSaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{unixSaController.selected != null}">
+                        <p:outputLabel value="#{webRelease.EditUnixSaLabel_idTask}" for="idTask" />
+                        <p:inputText id="idTask" value="#{unixSaController.selected.idTask}" title="#{webRelease.EditUnixSaTitle_idTask}" required="true" requiredMessage="#{webRelease.EditUnixSaRequiredMessage_idTask}"/>
+                        <p:outputLabel value="#{webRelease.EditUnixSaLabel_taskDetails}" for="taskDetails" />
+                        <p:inputText id="taskDetails" value="#{unixSaController.selected.taskDetails}" title="#{webRelease.EditUnixSaTitle_taskDetails}" required="true" requiredMessage="#{webRelease.EditUnixSaRequiredMessage_taskDetails}"/>
+                        <p:outputLabel value="#{webRelease.EditUnixSaLabel_taskStartTime}" for="taskStartTime" />
+                        <p:calendar id="taskStartTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{unixSaController.selected.taskStartTime}" title="#{webRelease.EditUnixSaTitle_taskStartTime}"  showOn="button"/>
+                        <p:outputLabel value="#{webRelease.EditUnixSaLabel_taskEndTime}" for="taskEndTime" />
+                        <p:calendar id="taskEndTime" pattern="MM/dd/yyyy HH:mm:ss" value="#{unixSaController.selected.taskEndTime}" title="#{webRelease.EditUnixSaTitle_taskEndTime}"  showOn="button"/>
+                        <p:outputLabel value="#{webRelease.EditUnixSaLabel_releaseId}" for="releaseId" />
+                        <p:selectOneMenu id="releaseId" value="#{unixSaController.selected.releaseId}" >
+                            <f:selectItem itemLabel="#{webRelease.SelectOneMessage}"/>
+                            <f:selectItems value="#{releaseManagerController.itemsAvailableSelectOne}"
+                                           var="releaseIdItem"
+                                           itemValue="#{releaseIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unixSaController.update}" value="#{webRelease.Save}" update="display,:UnixSaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UnixSaEditDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="UnixSaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

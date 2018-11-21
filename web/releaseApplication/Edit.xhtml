@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReleaseApplicationEditDlg" widgetVar="ReleaseApplicationEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.EditReleaseApplicationTitle}">
+            <h:form id="ReleaseApplicationEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{releaseApplicationController.selected != null}">
+                        <p:outputLabel value="#{webRelease.EditReleaseApplicationLabel_applicationName}" for="applicationName" />
+                        <p:inputText id="applicationName" value="#{releaseApplicationController.selected.applicationName}" title="#{webRelease.EditReleaseApplicationTitle_applicationName}" required="true" requiredMessage="#{webRelease.EditReleaseApplicationRequiredMessage_applicationName}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseApplicationLabel_applicationDescription}" for="applicationDescription" />
+                        <p:inputText id="applicationDescription" value="#{releaseApplicationController.selected.applicationDescription}" title="#{webRelease.EditReleaseApplicationTitle_applicationDescription}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseApplicationLabel_itsmTemplate}" for="itsmTemplate" />
+                        <p:inputText id="itsmTemplate" value="#{releaseApplicationController.selected.itsmTemplate}" title="#{webRelease.EditReleaseApplicationTitle_itsmTemplate}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseApplicationLabel_versionTextRequired}" for="versionTextRequired" />
+                        <p:inputText id="versionTextRequired" value="#{releaseApplicationController.selected.versionTextRequired}" title="#{webRelease.EditReleaseApplicationTitle_versionTextRequired}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{releaseApplicationController.update}" value="#{webRelease.Save}" update="display,:ReleaseApplicationListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReleaseApplicationEditDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="ReleaseApplicationEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

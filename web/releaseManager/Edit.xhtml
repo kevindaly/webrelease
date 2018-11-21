@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReleaseManagerEditDlg" widgetVar="ReleaseManagerEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.EditReleaseManagerTitle}">
+            <h:form id="ReleaseManagerEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{releaseManagerController.selected != null}">
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_idReleaseNumber}" for="idReleaseNumber" />
+                        <p:inputText id="idReleaseNumber" value="#{releaseManagerController.selected.idReleaseNumber}" title="#{webRelease.EditReleaseManagerTitle_idReleaseNumber}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_idReleaseNumber}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_versionNumber}" for="versionNumber" />
+                        <p:inputText id="versionNumber" value="#{releaseManagerController.selected.versionNumber}" title="#{webRelease.EditReleaseManagerTitle_versionNumber}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_versionNumber}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_primarySupportAd}" for="primarySupportAd" />
+                        <p:inputText id="primarySupportAd" value="#{releaseManagerController.selected.primarySupportAd}" title="#{webRelease.EditReleaseManagerTitle_primarySupportAd}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_primarySupportAd}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_regionsImpacted}" for="regionsImpacted" />
+                        <p:inputText id="regionsImpacted" value="#{releaseManagerController.selected.regionsImpacted}" title="#{webRelease.EditReleaseManagerTitle_regionsImpacted}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_regionsImpacted}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_dbaTask}" for="dbaTask" />
+                        <p:inputText id="dbaTask" value="#{releaseManagerController.selected.dbaTask}" title="#{webRelease.EditReleaseManagerTitle_dbaTask}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_dbaTask}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_workRequestedBy}" for="workRequestedBy" />
+                        <p:inputText id="workRequestedBy" value="#{releaseManagerController.selected.workRequestedBy}" title="#{webRelease.EditReleaseManagerTitle_workRequestedBy}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_workRequestedBy}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_statusInd}" for="statusInd" />
+                        <p:inputText id="statusInd" value="#{releaseManagerController.selected.statusInd}" title="#{webRelease.EditReleaseManagerTitle_statusInd}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_statusInd}"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_rrmApproved}" for="rrmApproved" />
+                        <p:inputText id="rrmApproved" value="#{releaseManagerController.selected.rrmApproved}" title="#{webRelease.EditReleaseManagerTitle_rrmApproved}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_rrmApprovedAutomation}" for="rrmApprovedAutomation" />
+                        <p:inputText id="rrmApprovedAutomation" value="#{releaseManagerController.selected.rrmApprovedAutomation}" title="#{webRelease.EditReleaseManagerTitle_rrmApprovedAutomation}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_releaseStart}" for="releaseStart" />
+                        <p:calendar id="releaseStart" pattern="MM/dd/yyyy HH:mm:ss" value="#{releaseManagerController.selected.releaseStart}" title="#{webRelease.EditReleaseManagerTitle_releaseStart}"  showOn="button"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_releaseEnd}" for="releaseEnd" />
+                        <p:calendar id="releaseEnd" pattern="MM/dd/yyyy HH:mm:ss" value="#{releaseManagerController.selected.releaseEnd}" title="#{webRelease.EditReleaseManagerTitle_releaseEnd}"  showOn="button"/>
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_changeType}" for="changeType" />
+                        <p:inputText id="changeType" value="#{releaseManagerController.selected.changeType}" title="#{webRelease.EditReleaseManagerTitle_changeType}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_releaseType}" for="releaseType" />
+                        <p:inputText id="releaseType" value="#{releaseManagerController.selected.releaseType}" title="#{webRelease.EditReleaseManagerTitle_releaseType}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_rrmContact}" for="rrmContact" />
+                        <p:inputText id="rrmContact" value="#{releaseManagerController.selected.rrmContact}" title="#{webRelease.EditReleaseManagerTitle_rrmContact}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_releaseId}" for="releaseId" />
+                        <p:inputText id="releaseId" value="#{releaseManagerController.selected.releaseId}" title="#{webRelease.EditReleaseManagerTitle_releaseId}" />
+                        <p:outputLabel value="#{webRelease.EditReleaseManagerLabel_applicationName}" for="applicationName" />
+                        <p:selectOneMenu id="applicationName" value="#{releaseManagerController.selected.applicationName}" required="true" requiredMessage="#{webRelease.EditReleaseManagerRequiredMessage_applicationName}">
+                            <f:selectItem itemLabel="#{webRelease.SelectOneMessage}"/>
+                            <f:selectItems value="#{releaseApplicationController.itemsAvailableSelectOne}"
+                                           var="applicationNameItem"
+                                           itemValue="#{applicationNameItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{releaseManagerController.update}" value="#{webRelease.Save}" update="display,:ReleaseManagerListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReleaseManagerEditDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="ReleaseManagerEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

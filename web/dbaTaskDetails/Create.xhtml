@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DbaTaskDetailsCreateDlg" widgetVar="DbaTaskDetailsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{webRelease.CreateDbaTaskDetailsTitle}">
+            <h:form id="DbaTaskDetailsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dbaTaskDetailsController.selected != null}">
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_phasedId}" for="phasedId" />
+                        <p:inputText id="phasedId" value="#{dbaTaskDetailsController.selected.phasedId}" title="#{webRelease.CreateDbaTaskDetailsTitle_phasedId}" required="true" requiredMessage="#{webRelease.CreateDbaTaskDetailsRequiredMessage_phasedId}"/>
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_phased}" for="phased" />
+                        <p:inputText id="phased" value="#{dbaTaskDetailsController.selected.phased}" title="#{webRelease.CreateDbaTaskDetailsTitle_phased}" required="true" requiredMessage="#{webRelease.CreateDbaTaskDetailsRequiredMessage_phased}"/>
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_taskStart}" for="taskStart" />
+                        <p:calendar id="taskStart" pattern="MM/dd/yyyy HH:mm:ss" value="#{dbaTaskDetailsController.selected.taskStart}" title="#{webRelease.EditDbaTaskDetailsTitle_taskStart}"  showOn="button"/>
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_taskEnd}" for="taskEnd" />
+                        <p:calendar id="taskEnd" pattern="MM/dd/yyyy HH:mm:ss" value="#{dbaTaskDetailsController.selected.taskEnd}" title="#{webRelease.EditDbaTaskDetailsTitle_taskEnd}"  showOn="button"/>
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_testServer}" for="testServer" />
+                        <p:inputText id="testServer" value="#{dbaTaskDetailsController.selected.testServer}" title="#{webRelease.CreateDbaTaskDetailsTitle_testServer}" />
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_listOfSpEbf}" for="listOfSpEbf" />
+                        <p:inputText id="listOfSpEbf" value="#{dbaTaskDetailsController.selected.listOfSpEbf}" title="#{webRelease.CreateDbaTaskDetailsTitle_listOfSpEbf}" />
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_spEbfLabel}" for="spEbfLabel" />
+                        <p:inputText id="spEbfLabel" value="#{dbaTaskDetailsController.selected.spEbfLabel}" title="#{webRelease.CreateDbaTaskDetailsTitle_spEbfLabel}" />
+                        <p:outputLabel value="#{webRelease.CreateDbaTaskDetailsLabel_releaseId}" for="releaseId" />
+                        <p:selectOneMenu id="releaseId" value="#{dbaTaskDetailsController.selected.releaseId}" >
+                            <f:selectItems value="#{releaseManagerController.itemsAvailableSelectOne}"
+                                           var="releaseIdItem"
+                                           itemValue="#{releaseIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dbaTaskDetailsController.create}" value="#{webRelease.Save}" update="display,:DbaTaskDetailsListForm:datalist,:growl" oncomplete="handleSubmit(args,'DbaTaskDetailsCreateDialog');"/>
+                    <p:commandButton value="#{webRelease.Cancel}" onclick="DbaTaskDetailsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
