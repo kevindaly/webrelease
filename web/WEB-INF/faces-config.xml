@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>/WebRelease</base-name>
+            <var>webRelease</var>
+        </resource-bundle>
+    </application>
+    <managed-bean>
+        <description>Session bean to hold data</description>
+        <managed-bean-name>jSFSessionHolderBean</managed-bean-name>
+        <managed-bean-class>com.webrelease.beans.ui.jsf.JSFSessionHolderBean</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    
+    <context-param>
+        <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+        <param-value>-1</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
+        <param-value>false</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>native</param-value>
+    </context-param>
+    
+    
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+        <init-param>
+            <param-name>thresholdSize</param-name>
+            <param-value>30000000</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    
+    
+<!--     <navigation-rule>
+	<from-view-id>questionForm/List</from-view-id>
+	<navigation-case>
+		<from-action>#{releaseManagerController.create}</from-action>
+		<from-outcome>success</from-outcome>
+		<to-view-id>releaseProperties/List.xhtml</to-view-id>
+	</navigation-case>
+    </navigation-rule>	
+    -->
+    
+    
+    
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.FileUploadRenderer</renderer-type>
+            <renderer-class>com.webrelease.renderer.JPFileUploadRenderer</renderer-class>
+        </renderer>
+    </render-kit> 
+</faces-config>
